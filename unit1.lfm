@@ -1,0 +1,559 @@
+object Form1: TForm1
+  Left = 345
+  Height = 495
+  Top = 138
+  Width = 1027
+  AutoSize = True
+  BorderStyle = bsDialog
+  BorderWidth = 10
+  Caption = 'Распознавание образов методом наименьшего расстояния (Ионисян А.С.)'
+  ClientHeight = 495
+  ClientWidth = 1027
+  OnCreate = FormCreate
+  Position = poDesktopCenter
+  LCLVersion = '2.0.10.0'
+  object Edit_student_name: TEdit
+    Left = 152
+    Height = 32
+    Top = 8
+    Width = 366
+    Font.Height = -17
+    Font.Name = 'Sans'
+    ParentFont = False
+    TabOrder = 0
+    Text = 'Кратчайшее расстояние'
+  end
+  object Label_student_name: TLabel
+    Left = 16
+    Height = 19
+    Top = 14
+    Width = 128
+    Caption = 'ФИО студента'
+    Font.Height = -17
+    Font.Name = 'Sans'
+    ParentColor = False
+    ParentFont = False
+  end
+  object BTN_orig_create: TButton
+    Left = 648
+    Height = 32
+    Top = 8
+    Width = 160
+    Caption = 'Создать эталоны'
+    Font.Height = -17
+    Font.Name = 'Sans'
+    OnClick = BTN_orig_createClick
+    ParentFont = False
+    TabOrder = 1
+  end
+  object PB_receptors: TPaintBox
+    Left = 16
+    Height = 418
+    Top = 64
+    Width = 500
+    ParentFont = False
+    OnMouseDown = PB_receptorsMouseDown
+    OnPaint = PB_receptorsPaint
+  end
+  object Label2: TLabel
+    Left = 16
+    Height = 14
+    Top = 48
+    Width = 145
+    Caption = 'Рецепторное поле (РП)'
+    ParentColor = False
+    ParentFont = False
+  end
+  object PB_orig1: TPaintBox
+    Tag = 1
+    Left = 520
+    Height = 88
+    Top = 66
+    Width = 116
+    ParentFont = False
+    OnMouseDown = PB_orig1MouseDown
+    OnPaint = PB_orig1Paint
+  end
+  object BTN_orig1_draw: TButton
+    Tag = 1
+    Left = 520
+    Height = 32
+    Top = 154
+    Width = 40
+    Caption = 'в РП'
+    OnClick = BTN_orig1_drawClick
+    ParentFont = False
+    TabOrder = 2
+  end
+  object PB_orig2: TPaintBox
+    Tag = 2
+    Left = 648
+    Height = 88
+    Top = 66
+    Width = 116
+    ParentFont = False
+    OnMouseDown = PB_orig1MouseDown
+    OnPaint = PB_orig1Paint
+  end
+  object BTN_orig2_draw: TButton
+    Tag = 2
+    Left = 648
+    Height = 32
+    Top = 154
+    Width = 40
+    Caption = 'в РП'
+    OnClick = BTN_orig1_drawClick
+    ParentFont = False
+    TabOrder = 3
+  end
+  object PB_orig3: TPaintBox
+    Tag = 3
+    Left = 776
+    Height = 88
+    Top = 66
+    Width = 116
+    ParentFont = False
+    OnMouseDown = PB_orig1MouseDown
+    OnPaint = PB_orig1Paint
+  end
+  object BTN_orig3_draw: TButton
+    Tag = 3
+    Left = 776
+    Height = 32
+    Top = 154
+    Width = 40
+    Caption = 'в РП'
+    OnClick = BTN_orig1_drawClick
+    ParentFont = False
+    TabOrder = 4
+  end
+  object PB_orig4: TPaintBox
+    Tag = 4
+    Left = 904
+    Height = 88
+    Top = 66
+    Width = 116
+    ParentFont = False
+    OnMouseDown = PB_orig1MouseDown
+    OnPaint = PB_orig1Paint
+  end
+  object BTN_orig4_draw: TButton
+    Tag = 4
+    Left = 904
+    Height = 32
+    Top = 154
+    Width = 40
+    Caption = 'в РП'
+    OnClick = BTN_orig1_drawClick
+    ParentFont = False
+    TabOrder = 5
+  end
+  object Label_orig1: TLabel
+    Left = 520
+    Height = 14
+    Top = 48
+    Width = 56
+    Caption = 'Эталон 1'
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label_orig2: TLabel
+    Left = 648
+    Height = 14
+    Top = 48
+    Width = 56
+    Caption = 'Эталон 2'
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label_orig3: TLabel
+    Left = 776
+    Height = 14
+    Top = 48
+    Width = 56
+    Caption = 'Эталон 3'
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label_orig4: TLabel
+    Left = 904
+    Height = 14
+    Top = 48
+    Width = 56
+    Caption = 'Эталон 4'
+    ParentColor = False
+    ParentFont = False
+  end
+  object BTN_orig1_clear: TButton
+    Tag = 1
+    Left = 558
+    Height = 32
+    Top = 154
+    Width = 78
+    Caption = 'Очистить'
+    OnClick = BTN_orig1_clearClick
+    TabOrder = 6
+  end
+  object BTN_orig2_clear: TButton
+    Tag = 2
+    Left = 686
+    Height = 32
+    Top = 154
+    Width = 76
+    Caption = 'Очистить'
+    OnClick = BTN_orig1_clearClick
+    TabOrder = 7
+  end
+  object BTN_orig3_clear: TButton
+    Tag = 3
+    Left = 814
+    Height = 32
+    Top = 154
+    Width = 78
+    Caption = 'Очистить'
+    OnClick = BTN_orig1_clearClick
+    TabOrder = 8
+  end
+  object BTN_orig4_clear: TButton
+    Tag = 4
+    Left = 942
+    Height = 32
+    Top = 154
+    Width = 78
+    Caption = 'Очистить'
+    OnClick = BTN_orig1_clearClick
+    TabOrder = 9
+  end
+  object BTN_reset: TButton
+    Left = 520
+    Height = 32
+    Top = 8
+    Width = 116
+    Caption = 'Сброс РП'
+    Font.Height = -17
+    Font.Name = 'Sans'
+    OnClick = BTN_resetClick
+    ParentFont = False
+    TabOrder = 10
+  end
+  object PB_orig5: TPaintBox
+    Tag = 5
+    Left = 520
+    Height = 88
+    Top = 210
+    Width = 116
+    ParentFont = False
+    OnMouseDown = PB_orig1MouseDown
+    OnPaint = PB_orig1Paint
+  end
+  object BTN_orig1_draw1: TButton
+    Tag = 5
+    Left = 520
+    Height = 32
+    Top = 304
+    Width = 40
+    Caption = 'в РП'
+    OnClick = BTN_orig1_drawClick
+    ParentFont = False
+    TabOrder = 11
+  end
+  object PB_orig6: TPaintBox
+    Tag = 6
+    Left = 648
+    Height = 88
+    Top = 210
+    Width = 116
+    ParentFont = False
+    OnMouseDown = PB_orig1MouseDown
+    OnPaint = PB_orig1Paint
+  end
+  object BTN_orig2_draw1: TButton
+    Tag = 6
+    Left = 648
+    Height = 32
+    Top = 304
+    Width = 40
+    Caption = 'в РП'
+    OnClick = BTN_orig1_drawClick
+    ParentFont = False
+    TabOrder = 12
+  end
+  object PB_orig7: TPaintBox
+    Tag = 7
+    Left = 776
+    Height = 88
+    Top = 210
+    Width = 116
+    ParentFont = False
+    OnMouseDown = PB_orig1MouseDown
+    OnPaint = PB_orig1Paint
+  end
+  object BTN_orig3_draw1: TButton
+    Tag = 7
+    Left = 776
+    Height = 32
+    Top = 304
+    Width = 40
+    Caption = 'в РП'
+    OnClick = BTN_orig1_drawClick
+    ParentFont = False
+    TabOrder = 13
+  end
+  object PB_orig8: TPaintBox
+    Tag = 8
+    Left = 904
+    Height = 88
+    Top = 210
+    Width = 116
+    ParentFont = False
+    OnMouseDown = PB_orig1MouseDown
+    OnPaint = PB_orig1Paint
+  end
+  object BTN_orig4_draw1: TButton
+    Tag = 8
+    Left = 904
+    Height = 32
+    Top = 304
+    Width = 40
+    Caption = 'в РП'
+    OnClick = BTN_orig1_drawClick
+    ParentFont = False
+    TabOrder = 14
+  end
+  object Label_orig5: TLabel
+    Left = 520
+    Height = 14
+    Top = 192
+    Width = 56
+    Caption = 'Эталон 5'
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label_orig6: TLabel
+    Left = 648
+    Height = 14
+    Top = 192
+    Width = 56
+    Caption = 'Эталон 6'
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label_orig7: TLabel
+    Left = 776
+    Height = 14
+    Top = 192
+    Width = 56
+    Caption = 'Эталон 7'
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label_orig8: TLabel
+    Left = 904
+    Height = 14
+    Top = 192
+    Width = 56
+    Caption = 'Эталон 8'
+    ParentColor = False
+    ParentFont = False
+  end
+  object BTN_orig1_clear1: TButton
+    Tag = 5
+    Left = 558
+    Height = 32
+    Top = 304
+    Width = 78
+    Caption = 'Очистить'
+    OnClick = BTN_orig1_clearClick
+    TabOrder = 15
+  end
+  object BTN_orig2_clear1: TButton
+    Tag = 6
+    Left = 686
+    Height = 32
+    Top = 304
+    Width = 76
+    Caption = 'Очистить'
+    OnClick = BTN_orig1_clearClick
+    TabOrder = 16
+  end
+  object BTN_orig3_clear1: TButton
+    Tag = 7
+    Left = 814
+    Height = 32
+    Top = 304
+    Width = 78
+    Caption = 'Очистить'
+    OnClick = BTN_orig1_clearClick
+    TabOrder = 17
+  end
+  object BTN_orig4_clear1: TButton
+    Tag = 8
+    Left = 942
+    Height = 32
+    Top = 304
+    Width = 78
+    Caption = 'Очистить'
+    OnClick = BTN_orig1_clearClick
+    TabOrder = 18
+  end
+  object PB_orig9: TPaintBox
+    Tag = 9
+    Left = 520
+    Height = 88
+    Top = 362
+    Width = 116
+    ParentFont = False
+    OnMouseDown = PB_orig1MouseDown
+    OnPaint = PB_orig1Paint
+  end
+  object BTN_orig1_draw2: TButton
+    Tag = 9
+    Left = 520
+    Height = 32
+    Top = 450
+    Width = 40
+    Caption = 'в РП'
+    OnClick = BTN_orig1_drawClick
+    ParentFont = False
+    TabOrder = 19
+  end
+  object PB_orig10: TPaintBox
+    Tag = 10
+    Left = 648
+    Height = 88
+    Top = 362
+    Width = 116
+    ParentFont = False
+    OnMouseDown = PB_orig1MouseDown
+    OnPaint = PB_orig1Paint
+  end
+  object BTN_orig2_draw2: TButton
+    Tag = 10
+    Left = 648
+    Height = 32
+    Top = 450
+    Width = 40
+    Caption = 'в РП'
+    OnClick = BTN_orig1_drawClick
+    ParentFont = False
+    TabOrder = 20
+  end
+  object PB_orig11: TPaintBox
+    Tag = 11
+    Left = 776
+    Height = 88
+    Top = 362
+    Width = 116
+    ParentFont = False
+    OnMouseDown = PB_orig1MouseDown
+    OnPaint = PB_orig1Paint
+  end
+  object BTN_orig3_draw2: TButton
+    Tag = 11
+    Left = 776
+    Height = 32
+    Top = 450
+    Width = 40
+    Caption = 'в РП'
+    OnClick = BTN_orig1_drawClick
+    ParentFont = False
+    TabOrder = 21
+  end
+  object PB_orig12: TPaintBox
+    Tag = 12
+    Left = 904
+    Height = 88
+    Top = 362
+    Width = 116
+    ParentFont = False
+    OnMouseDown = PB_orig1MouseDown
+    OnPaint = PB_orig1Paint
+  end
+  object BTN_orig4_draw2: TButton
+    Tag = 12
+    Left = 904
+    Height = 32
+    Top = 450
+    Width = 40
+    Caption = 'в РП'
+    OnClick = BTN_orig1_drawClick
+    ParentFont = False
+    TabOrder = 22
+  end
+  object Label_orig9: TLabel
+    Left = 520
+    Height = 14
+    Top = 344
+    Width = 56
+    Caption = 'Эталон 9'
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label_orig10: TLabel
+    Left = 648
+    Height = 14
+    Top = 344
+    Width = 64
+    Caption = 'Эталон 10'
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label_orig11: TLabel
+    Left = 776
+    Height = 14
+    Top = 344
+    Width = 64
+    Caption = 'Эталон 11'
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label_orig12: TLabel
+    Left = 904
+    Height = 14
+    Top = 344
+    Width = 64
+    Caption = 'Эталон 12'
+    ParentColor = False
+    ParentFont = False
+  end
+  object BTN_orig1_clear2: TButton
+    Tag = 9
+    Left = 558
+    Height = 32
+    Top = 450
+    Width = 78
+    Caption = 'Очистить'
+    OnClick = BTN_orig1_clearClick
+    TabOrder = 23
+  end
+  object BTN_orig2_clear2: TButton
+    Tag = 10
+    Left = 686
+    Height = 32
+    Top = 450
+    Width = 76
+    Caption = 'Очистить'
+    OnClick = BTN_orig1_clearClick
+    TabOrder = 24
+  end
+  object BTN_orig3_clear2: TButton
+    Tag = 11
+    Left = 814
+    Height = 32
+    Top = 450
+    Width = 78
+    Caption = 'Очистить'
+    OnClick = BTN_orig1_clearClick
+    TabOrder = 25
+  end
+  object BTN_orig4_clear2: TButton
+    Tag = 12
+    Left = 942
+    Height = 32
+    Top = 450
+    Width = 78
+    Caption = 'Очистить'
+    OnClick = BTN_orig1_clearClick
+    TabOrder = 26
+  end
+end
